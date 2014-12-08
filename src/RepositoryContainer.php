@@ -6,7 +6,7 @@ use Gitonomy\Git\Exception\ReferenceNotFoundException;
 use Gitonomy\Git\Repository;
 use Psr\Log\LoggerInterface;
 
-class RepositoryContainer
+class RepositoryContainer implements RepositoryContainerInterface
 {
     ////////////////////////////// CLASS PROPERTIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\
     const OPTION_DEBUG = 'debug';
@@ -34,7 +34,7 @@ class RepositoryContainer
     /**
      * @return LoggerInterface
      */
-    public function getLogger()
+    final public function getLogger()
     {
         return $this->logger;
     }
@@ -42,7 +42,7 @@ class RepositoryContainer
     /**
      * @param LoggerInterface $logger
      */
-    public function setLogger(LoggerInterface $logger)
+    final public function setLogger(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
@@ -50,7 +50,7 @@ class RepositoryContainer
     /**
      * @return array
      */
-    public function getOptions()
+    final public function getOptions()
     {
         $logger = $this->getLogger();
 
@@ -86,7 +86,7 @@ class RepositoryContainer
     /**
      * @return string
      */
-    public function getRepositoryPath()
+    final public function getRepositoryPath()
     {
         return $this->repositoryPath;
     }
