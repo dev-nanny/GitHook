@@ -11,8 +11,5 @@ build:
             code: composer install --prefer-dist --no-interaction
         - script:
             name: Run Test Suite
-            code: ./vendor/bin/phpunit
-        - script:
-            name: Export Code Coverage
-            code: ./vendor/bin/coveralls --verbose --exclude-no-stmt
+            code: ./vendor/bin/phpunit && ./vendor/bin/coveralls --verbose --exclude-no-stmt
 #EOF
