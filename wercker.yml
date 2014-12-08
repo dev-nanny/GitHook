@@ -14,5 +14,5 @@ build:
             code: ./vendor/bin/phpunit
         - script:
             name: Export Code Coverage
-            code: ./vendor/bin/coveralls
+            code: ./vendor/bin/coveralls --verbose --exclude-no-stmt
 #EOF
