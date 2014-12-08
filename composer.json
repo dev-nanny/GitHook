@@ -7,7 +7,9 @@
     },
     "require-dev": {
         "monolog/monolog": "~1.11",
-        "phpunit/phpunit": "~4.4"
+        "phpunit/phpunit": "~4.4",
+        "satooshi/php-coveralls": "~0.6",
+        "whatthejeff/nyancat-phpunit-resultprinter": "~1.2"
     },
     "autoload": {
         "psr-4" : {
