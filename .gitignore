@@ -1,3 +1,4 @@
 # Ignorance is bliss
-phpunit.xml.dist
+phpunit.xml
 vendor
+
