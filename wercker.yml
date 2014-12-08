@@ -1,0 +1,18 @@
+box: wercker/php
+build:
+    steps:
+        - script:
+            name: PHP Information
+            code: |
+                echo "PHP version  : $(php --version)"
+                echo "Installed Modules: $(php --modules)"
+        - script:
+            name: Install Dependencies
+            code: composer install --prefer-dist --no-interaction
+        - script:
+            name: Run Test Suite
+            code: ./vendor/bin/phpunit
+        - script:
+            name: Export Code Coverage
+            code: ./vendor/bin/coveralls
+#EOF
