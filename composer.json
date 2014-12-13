@@ -13,12 +13,12 @@
     },
     "autoload": {
         "psr-4" : {
-            "DevNanny\\Git\\" : "src/"
+            "DevNanny\\GitHook\\" : "src/"
         }
     },
     "autoload-dev": {
         "psr-4" : {
-            "DevNanny\\Git\\" : "tests/"
+            "DevNanny\\GitHook\\" : "tests/"
         }
     }
 }
