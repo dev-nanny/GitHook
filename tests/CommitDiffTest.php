@@ -1,9 +1,9 @@
 <?php
 
-namespace DevNanny\Git;
+namespace DevNanny\GitHook;
 
 /**
- * @coversDefaultClass DevNanny\Git\CommitDiff
+ * @coversDefaultClass DevNanny\GitHook\CommitDiff
  * @covers ::<!public>
  * @covers ::__construct
  * @covers ::setRepository

@@ -1,6 +1,6 @@
 <?php
 
-namespace DevNanny\Git;
+namespace DevNanny\GitHook;
 
 interface CommitDiffInterface
 {

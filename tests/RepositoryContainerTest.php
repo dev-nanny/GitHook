@@ -1,13 +1,13 @@
 <?php
 
-namespace DevNanny\Git;
+namespace DevNanny\GitHook;
 
 use Gitonomy\Git\Exception\ReferenceNotFoundException;
 use Gitonomy\Git\Repository;
 use Psr\Log\LoggerInterface;
 
 /**
- * @coversDefaultClass DevNanny\Git\RepositoryContainer
+ * @coversDefaultClass DevNanny\GitHook\RepositoryContainer
  * @covers ::<!public>
  * @covers ::__construct
  * @covers ::setRepositoryPath
@@ -176,7 +176,7 @@ final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
      * @covers ::setRepository
      *
      * @expectedException \Gitonomy\Git\Exception\ReferenceNotFoundException
-     * @expectedExceptionMessage DevNanny\Git\RepositoryContainerTest::MOCK_STRING
+     * @expectedExceptionMessage DevNanny\GitHook\RepositoryContainerTest::MOCK_STRING
      */
     final public function repositoryContainerShouldPassExceptionsOnWhenRepositoryThrowsException()
     {

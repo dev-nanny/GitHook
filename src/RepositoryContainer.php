@@ -1,6 +1,6 @@
 <?php
 
-namespace DevNanny\Git;
+namespace DevNanny\GitHook;
 
 use Gitonomy\Git\Exception\ReferenceNotFoundException;
 use Gitonomy\Git\Repository;
