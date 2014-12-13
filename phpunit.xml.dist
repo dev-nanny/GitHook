@@ -5,7 +5,7 @@
 
     backupGlobals="false"
     backupStaticAttributes="false"
-    bootstrap="./vendor/autoload.php"
+    bootstrap="vendor/autoload.php"
     cacheTokens="true"
     colors="true"
 
@@ -31,17 +31,20 @@
 
     strict="true"
     verbose="true"
+
+    printerFile="vendor/whatthejeff/nyancat-phpunit-resultprinter/src/NyanCat/PHPUnit/ResultPrinter.php"
+    printerClass="NyanCat\PHPUnit\ResultPrinter"
 >
     <testsuites>
-        <testsuite name="dev-nanny/git-hooks">
-            <directory suffix=".php">./tests/</directory>
+        <testsuite name="dev-nanny/git-hook">
+            <directory suffix=".php">tests/</directory>
         </testsuite>
     </testsuites>
 
     <logging>
-        <log type="testdox-text" target="php://stdout"/>
+        <log type="testdox-text" target="build/logs/testdox.txt"/>
         <log type="coverage-text" target="php://stdout"/>
-        <log type="coverage-clover" target="build/log/clover.xml"/>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
 
     <filter>
