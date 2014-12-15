@@ -11,7 +11,8 @@ use Psr\Log\LoggerInterface;
  * @covers ::<!public>
  * @covers ::__construct
  * @covers ::setRepositoryPath
-
+ *
+ * @uses \Doctrine\Instantiator\Instantiator
  */
 final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,6 +37,8 @@ final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
      * @covers ::getOptions
      * @covers ::getLogger
      * @covers ::getRepositoryPath
+     *
+     * @uses \Gitonomy\Git\Repository
      */
     final public function repositoryContainerShouldCreateRepositoryWhenNoneGiven()
     {
@@ -145,6 +148,8 @@ final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
      * @covers ::getCommittedFiles
      * @covers ::getRepository
      * @covers ::setRepository
+     *
+     * @uses \Gitonomy\Git\Exception\ReferenceNotFoundException
      */
     final public function repositoryContainerShouldReplaceHeadReferenceWhenAskedToGetCommittedFilesForNewRepository()
     {
@@ -177,6 +182,8 @@ final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \Gitonomy\Git\Exception\ReferenceNotFoundException
      * @expectedExceptionMessage DevNanny\GitHook\RepositoryContainerTest::MOCK_STRING
+     *
+     * @uses \Gitonomy\Git\Exception\ReferenceNotFoundException
      */
     final public function repositoryContainerShouldPassExceptionsOnWhenRepositoryThrowsException()
     {

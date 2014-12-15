@@ -8,6 +8,8 @@ namespace DevNanny\GitHook;
  * @covers ::__construct
  * @covers ::setRepository
  * @covers ::getRepository
+ *
+ * @uses \Doctrine\Instantiator\Instantiator
  */
 final class CommitDiffTest extends \PHPUnit_Framework_TestCase
 {
@@ -40,13 +42,13 @@ final class CommitDiffTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers ::getFileList
+     * @covers ::getChangeList
      */
     final public function commitDiffShouldAlwaysReturnFileListWhenAskedToGetFileList()
     {
         $container = $this->commitDiff;
 
-        $fileList = $container->getFileList();
+        $fileList = $container->getChangeList();
 
         $this->assertInternalType('array', $fileList);
 
@@ -68,7 +70,7 @@ final class CommitDiffTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @covers ::getFileList
+     * @covers ::getChangeList
      */
     final public function commitDiffShouldReturnPopulatedFileListWhenFilesChanged()
     {
@@ -93,7 +95,7 @@ final class CommitDiffTest extends \PHPUnit_Framework_TestCase
             ->willReturn($rawOutput)
         ;
 
-        $actual = $container->getFileList();
+        $actual = $container->getChangeList();
 
         $this->assertEquals($expected, $actual);
     }

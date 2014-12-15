@@ -31,12 +31,12 @@ class CommitDiff implements CommitDiffInterface
     /**
      * @return array
      */
-    final public function getFileList()
+    final public function getChangeList()
     {
         $repositoryContainer = $this->getRepository();
         $rawOutput = $repositoryContainer->getCommittedFiles();
 
-        return $this->buildFileList($rawOutput);
+        return $this->buildChangeList($rawOutput);
     }
 
     /**
@@ -46,7 +46,7 @@ class CommitDiff implements CommitDiffInterface
      *
      * @return array
      */
-    private function buildFileList($rawOutput)
+    private function buildChangeList($rawOutput)
     {
         /* Please note that the input is a single string, alternating file-paths
          * and file-status delimited by, and closed of with, a NULL character.

@@ -27,7 +27,7 @@ interface CommitDiffInterface
     /**
      * @return array
      */
-    public function getFileList();
+    public function getChangeList();
 
     /**
      * @param RepositoryContainerInterface $repository
