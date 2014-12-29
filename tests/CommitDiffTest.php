@@ -2,6 +2,8 @@
 
 namespace DevNanny\GitHook;
 
+use DevNanny\GitHook\Interfaces\RepositoryContainerInterface;
+
 /**
  * @coversDefaultClass DevNanny\GitHook\CommitDiff
  * @covers ::<!public>
@@ -32,7 +34,7 @@ final class CommitDiffTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException(
             \PHPUnit_Framework_Error::class,
             'Argument 1 passed to DevNanny\GitHook\CommitDiff::__construct() ' .
-            'must implement interface DevNanny\GitHook\RepositoryContainerInterface, none given'
+            'must implement interface ' . RepositoryContainerInterface::class . ', none given'
         );
         /** @noinspection PhpParamsInspection */
         new CommitDiff();

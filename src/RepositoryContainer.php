@@ -2,6 +2,7 @@
 
 namespace DevNanny\GitHook;
 
+use DevNanny\GitHook\Interfaces\RepositoryContainerInterface;
 use Gitonomy\Git\Exception\ReferenceNotFoundException;
 use Gitonomy\Git\Repository;
 use Psr\Log\LoggerInterface;

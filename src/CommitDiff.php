@@ -2,6 +2,9 @@
 
 namespace DevNanny\GitHook;
 
+use DevNanny\GitHook\Interfaces\CommitDiffInterface;
+use DevNanny\GitHook\Interfaces\RepositoryContainerInterface;
+
 class CommitDiff implements CommitDiffInterface
 {
     /** @var RepositoryContainerInterface */

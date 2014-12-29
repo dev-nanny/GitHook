@@ -1,6 +1,6 @@
 <?php
 
-namespace DevNanny\GitHook;
+namespace DevNanny\GitHook\Interfaces;
 
 use Gitonomy\Git\Hooks;
 use Gitonomy\Git\Repository;

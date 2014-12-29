@@ -2,6 +2,7 @@
 
 namespace DevNanny\GitHook;
 
+use DevNanny\GitHook\Interfaces\RepositoryContainerInterface;
 use Gitonomy\Git\Hooks;
 
 /**
@@ -142,6 +143,8 @@ final class InstallerTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers ::install
      * @depends testInstallerShouldValidateInstalledHookMatchesSourceHookWhenAskedToInstallSupportedHook
+     *
+     * @param bool $installed
      */
     final public function testInstallerShouldMarkHookInstalledWhenHookAlreadyInstalledAndMatchesSourceHook($installed)
     {

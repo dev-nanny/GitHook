@@ -2,6 +2,8 @@
 
 namespace DevNanny\GitHook;
 
+use DevNanny\GitHook\Interfaces\RepositoryContainerInterface;
+
 class Installer
 {
     ////////////////////////////// CLASS PROPERTIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\
