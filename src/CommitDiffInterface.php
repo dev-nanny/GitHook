@@ -15,16 +15,6 @@ interface CommitDiffInterface
     const FILE_STATUS_UNKNOWN       = 'X';  // most probably a bug, please report it to GIT
 
     /**
-     * @return RepositoryContainerInterface
-     */
-    public function getRepository();
-
-    /**
-     * @param RepositoryContainerInterface $repository
-     */
-    public function setRepository($repository);
-
-    /**
      * @return array
      */
     public function getChangeList();

@@ -7,25 +7,9 @@ class CommitDiff implements CommitDiffInterface
     /** @var RepositoryContainerInterface */
     private $repository;
 
-    /**
-     * @return RepositoryContainerInterface
-     */
-    final public function getRepository()
-    {
-        return $this->repository;
-    }
-
-    /**
-     * @param RepositoryContainerInterface $repository
-     */
-    final public function setRepository($repository)
-    {
-        $this->repository = $repository;
-    }
-
     final public function __construct(RepositoryContainerInterface $repository)
     {
-        $this->setRepository($repository);
+        $this->repository = $repository;
     }
 
     /**
@@ -33,7 +17,7 @@ class CommitDiff implements CommitDiffInterface
      */
     final public function getChangeList()
     {
-        $repositoryContainer = $this->getRepository();
+        $repositoryContainer = $this->repository;
         $rawOutput = $repositoryContainer->getCommittedFiles();
 
         return $this->buildChangeList($rawOutput);
@@ -48,8 +32,8 @@ class CommitDiff implements CommitDiffInterface
      */
     private function buildChangeList($rawOutput)
     {
-        /* Please note that the input is a single string, alternating file-paths
-         * and file-status delimited by, and closed of with, a NULL character.
+        /* Please note that the input is a single string, alternating file-status
+         * and file-paths, delimited by (and closed of with), a NULL character.
          * Hence the last entry will always be an empty value.
          */
         $files = array();

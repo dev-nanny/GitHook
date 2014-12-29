@@ -6,8 +6,6 @@ namespace DevNanny\GitHook;
  * @coversDefaultClass DevNanny\GitHook\CommitDiff
  * @covers ::<!public>
  * @covers ::__construct
- * @covers ::setRepository
- * @covers ::getRepository
  *
  * @uses \Doctrine\Instantiator\Instantiator
  */
@@ -29,14 +27,15 @@ final class CommitDiffTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    final public function commitDiffShouldRememberTheRepositoryItWasGivenWhenInstantiated()
+    final public function commitDiffShouldBeGivenRepositoryContainerWhenInstantiated()
     {
-        $container = $this->commitDiff;
-
-        $expected = $this->mockRepository;
-        $actual = $container->getRepository();
-
-        $this->assertSame($expected, $actual);
+        $this->setExpectedException(
+            \PHPUnit_Framework_Error::class,
+            'Argument 1 passed to DevNanny\GitHook\CommitDiff::__construct() ' .
+            'must implement interface DevNanny\GitHook\RepositoryContainerInterface, none given'
+        );
+        /** @noinspection PhpParamsInspection */
+        new CommitDiff();
     }
 
     /**
