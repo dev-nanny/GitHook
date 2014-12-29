@@ -3,6 +3,7 @@
 namespace DevNanny\GitHook;
 
 use Gitonomy\Git\Exception\ReferenceNotFoundException;
+use Gitonomy\Git\Hooks;
 use Gitonomy\Git\Repository;
 use Psr\Log\LoggerInterface;
 
@@ -104,6 +105,33 @@ final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @test
+     *
+     * @covers ::getHooks
+     * @covers ::setRepository
+     */
+    final public function repositoryContainerShouldPassHooksFromRepositoryWhenAskedForHooks()
+    {
+        $container = $this->container;
+        $mockRepository = $this->getMockRepository();
+
+        $container->setRepository($mockRepository);
+
+        $expected = $this->getMockBuilder(Hooks::class)
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $mockRepository->expects($this->exactly(1))
+            ->method('getHooks')
+            ->willReturn($expected)
+        ;
+
+        $actual = $container->getHooks();
+
+        $this->assertSame($expected, $actual);
+    }
     /**
      * @test
      *
@@ -213,7 +241,8 @@ final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
      *
      * @param $committedFiles
      */
-    final public function repositoryContainerShouldReturnRawOutputWhenAskedToGetCommittedFiles($committedFiles) {
+    final public function repositoryContainerShouldReturnRawOutputWhenAskedToGetCommittedFiles($committedFiles)
+    {
         $this->assertSame(self::MOCK_STRING, $committedFiles);
     }
 

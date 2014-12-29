@@ -32,6 +32,14 @@ class RepositoryContainer implements RepositoryContainerInterface
 
     //////////////////////////// SETTERS AND GETTERS \\\\\\\\\\\\\\\\\\\\\\\\\\\
     /**
+     * @return \Gitonomy\Git\Hooks
+     */
+    final public function getHooks()
+    {
+        return $this->repository->getHooks();
+    }
+
+    /**
      * @return LoggerInterface
      */
     final public function getLogger()

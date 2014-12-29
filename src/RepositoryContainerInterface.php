@@ -2,11 +2,17 @@
 
 namespace DevNanny\GitHook;
 
+use Gitonomy\Git\Hooks;
 use Gitonomy\Git\Repository;
 use Psr\Log\LoggerInterface;
 
 interface RepositoryContainerInterface
 {
+    /**
+     * @return Hooks
+     */
+    public function getHooks();
+
     /**
      * @return LoggerInterface
      */
