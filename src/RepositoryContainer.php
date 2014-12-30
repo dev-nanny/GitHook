@@ -37,7 +37,7 @@ class RepositoryContainer implements RepositoryContainerInterface
      */
     final public function getHooks()
     {
-        return $this->repository->getHooks();
+        return $this->getRepository()->getHooks();
     }
 
     /**
