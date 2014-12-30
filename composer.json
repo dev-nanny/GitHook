@@ -3,10 +3,11 @@
     "description" : "Git post-commit hook to trigger DevNanny",
     "license" : "GPL-3.0+",
     "require": {
-        "dev-nanny/connectors": "~0",
+        "dev-nanny/connectors": "~0.1",
         "gitonomy/gitlib": "~0.1"
     },
     "require-dev": {
+        "composer/composer" : "@dev",
         "phpunit/phpunit": "~4.4",
         "satooshi/php-coveralls": "dev-master",
         "whatthejeff/nyancat-phpunit-resultprinter": "~1.2"
