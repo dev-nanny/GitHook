@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Called by "git commit" with no arguments, this hook should exit with non-zero
+ * status after issuing an appropriate message if it wants to stop the commit.
+ */
+namespace DevNanny\GitHook;
+
+use DevNanny\Connector\Collection;
+use DevNanny\Connector\Loader;
+use DevNanny\Connector\Locator;
+use DevNanny\Connector\Runner;
+
+use League\Flysystem\Filesystem;
+use League\Flysystem\Adapter\Local as Adapter;
+
+$projectRoot = __DIR__ . '/../../';
+
+require $projectRoot . 'vendor/autoload.php';
+
+// READY?
+$localAdapter = new Adapter($projectRoot);
+$filesystem = new Filesystem($localAdapter);
+$locator = new Locator($filesystem);
+
+$repo = new RepositoryContainer($projectRoot);
+$commitDiff = new CommitDiff($repo);
+$connectors = new Collection();
+$loader = new Loader($connectors, $locator);
+$runner = new Runner($connectors);
+
+// SET?
+$changeList = $commitDiff->getChangeList();
+$loader->loadConnectors();
+
+// GO!
+$runner->run($filesystem, $changeList);
+
+echo $runner->getOutput();
+
+return $runner->getErrorCode();
+/*EOF*/
