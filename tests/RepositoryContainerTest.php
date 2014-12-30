@@ -110,6 +110,7 @@ final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
      *
      * @covers ::getHooks
      * @covers ::setRepository
+     * @covers ::getRepository
      */
     final public function repositoryContainerShouldPassHooksFromRepositoryWhenAskedForHooks()
     {
