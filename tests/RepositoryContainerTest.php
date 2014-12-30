@@ -180,7 +180,7 @@ final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
      *
      * @uses \Gitonomy\Git\Exception\ReferenceNotFoundException
      */
-    final public function repositoryContainerShouldReplaceHeadReferenceWhenAskedToGetCommittedFilesForNewRepository()
+    final public function repositoryContainerShouldReplaceHeadRefWhenAskedToGetChangeListForRepositoryWithoutHeadFile()
     {
         $container = $this->container;
 
@@ -190,7 +190,38 @@ final class RepositoryContainerTest extends \PHPUnit_Framework_TestCase
 
         /** @var ReferenceNotFoundException|\PHPUnit_Framework_MockObject_MockObject $mockException */
         $mockException = $this->getMockBuilder(ReferenceNotFoundException::class)
-            ->setConstructorArgs(array(RepositoryContainer::ERROR_NO_HEAD_FOUND))
+            ->setConstructorArgs(array(RepositoryContainer::ERROR_NO_HEAD_FILE))
+            ->getMock()
+        ;
+
+        $mockRepository->expects($this->exactly(1))
+            ->method('getHead')
+            ->willThrowException($mockException)
+        ;
+
+        $container->getCommittedFiles();
+    }
+
+    /**
+     * @test
+     *
+     * @covers ::getCommittedFiles
+     * @covers ::getRepository
+     * @covers ::setRepository
+     *
+     * @uses \Gitonomy\Git\Exception\ReferenceNotFoundException
+     */
+    final public function repositoryContainerShouldReplaceHeadRefWhenAskedToGetChangeListForRepositoryWithoutHeadRef()
+    {
+        $container = $this->container;
+
+        $mockRepository = $this->getMockRepository();
+        $this->addRunCallToMockRepository($mockRepository, '4b825dc642cb6eb9a060e54bf8d69288fbee4904');
+        $container->setRepository($mockRepository);
+
+        /** @var ReferenceNotFoundException|\PHPUnit_Framework_MockObject_MockObject $mockException */
+        $mockException = $this->getMockBuilder(ReferenceNotFoundException::class)
+            ->setConstructorArgs(array(RepositoryContainer::ERROR_NO_HEAD_REF))
             ->getMock()
         ;
 

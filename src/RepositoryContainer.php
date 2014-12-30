@@ -13,7 +13,8 @@ class RepositoryContainer implements RepositoryContainerInterface
     const OPTION_DEBUG = 'debug';
     const OPTION_LOGGER = 'logger';
 
-    const ERROR_NO_HEAD_FOUND = 'Unable to find HEAD file';
+    const ERROR_NO_HEAD_FILE = 'Unable to find HEAD file';
+    const ERROR_NO_HEAD_REF = 'Reference not found: "refs/heads/master"';
 
     /** @var string */
     private $repositoryPath;
@@ -147,7 +148,7 @@ class RepositoryContainer implements RepositoryContainerInterface
             /*$head = */$repository->getHead();
             $head = 'HEAD';
         } catch (ReferenceNotFoundException $exception) {
-            if (strpos($exception->getMessage(), self::ERROR_NO_HEAD_FOUND) !== false) {
+            if ($this->isInitialCommit($exception->getMessage())) {
                 //@NOTE: Initial commit, diff against an empty tree object
                 $head = '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
             } else {
@@ -156,6 +157,19 @@ class RepositoryContainer implements RepositoryContainerInterface
         }
 
         return $head;
+    }
+
+    /**
+     * @param $message
+     *
+     * @return bool
+     */
+    private function isInitialCommit($message)
+    {
+        $headFileNotFound = strpos($message, self::ERROR_NO_HEAD_FILE) !== false;
+        $referenceNotFound = strpos($message, self::ERROR_NO_HEAD_REF) !== false;
+
+        return $headFileNotFound || $referenceNotFound;
     }
 }
 

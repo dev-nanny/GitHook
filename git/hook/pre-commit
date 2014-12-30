@@ -14,7 +14,21 @@ use DevNanny\Connector\Runner;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as Adapter;
 
-$projectRoot = __DIR__ . '/../../';
+function getProjectRoot()
+{
+    $currentDirectory = __DIR__;
+    $vendorDirectory = 'vendor/dev-nanny/git-hook/git/hook';
+    $length = strlen($vendorDirectory);
+    if (substr($currentDirectory, -$length) === $vendorDirectory) {
+        $projectRoot = substr($currentDirectory, 0, -$length);
+    } else {
+        $projectRoot = substr($currentDirectory, 0, -strlen('git/hook'));
+    }
+
+    return $projectRoot;
+}
+
+$projectRoot = getProjectRoot();
 
 require $projectRoot . 'vendor/autoload.php';
 
@@ -39,4 +53,5 @@ $runner->run($filesystem, $changeList);
 echo $runner->getOutput();
 
 return $runner->getErrorCode();
+
 /*EOF*/
