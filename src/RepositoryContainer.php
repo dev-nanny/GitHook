@@ -13,7 +13,7 @@ class RepositoryContainer implements RepositoryContainerInterface
     const OPTION_DEBUG = 'debug';
     const OPTION_LOGGER = 'logger';
 
-    const ERROR_NO_HEAD_FOUND = 'Unable to find HEAD file';
+    const ERROR_NO_HEAD_FILE = 'Unable to find HEAD file';
     const ERROR_NO_HEAD_REF = 'Reference not found: "refs/heads/master"';
 
     /** @var string */
@@ -166,7 +166,7 @@ class RepositoryContainer implements RepositoryContainerInterface
      */
     private function isInitialCommit($message)
     {
-        $headFileNotFound = strpos($message, self::ERROR_NO_HEAD_FOUND) !== false;
+        $headFileNotFound = strpos($message, self::ERROR_NO_HEAD_FILE) !== false;
         $referenceNotFound = strpos($message, self::ERROR_NO_HEAD_REF) !== false;
 
         return $headFileNotFound || $referenceNotFound;
