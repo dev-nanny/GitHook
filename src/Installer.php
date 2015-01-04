@@ -2,13 +2,12 @@
 
 namespace DevNanny\GitHook;
 
+use DevNanny\GitHook\Interfaces\InstallerInterface;
 use DevNanny\GitHook\Interfaces\RepositoryContainerInterface;
 
-class Installer
+class Installer implements InstallerInterface
 {
     ////////////////////////////// CLASS PROPERTIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    const PRE_COMMIT = 'pre-commit';
-
     const ERROR_UNSUPPORTED_HOOK = 'Hook of type "%s" is not supported, must be one of "%s"';
     const ERROR_HOOK_ALREADY_EXISTS = 'Other hook "%s" already exists';
 
