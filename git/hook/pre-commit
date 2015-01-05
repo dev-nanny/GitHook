@@ -50,8 +50,9 @@ $loader->loadConnectors();
 // GO!
 $runner->run($filesystem, $changeList);
 
+echo 'Commit aborted' . PHP_EOL;
 echo $runner->getOutput();
 
-return $runner->getErrorCode();
+exit ($runner->getErrorCode());
 
 /*EOF*/
