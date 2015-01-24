@@ -2,6 +2,7 @@
 
 namespace DevNanny\GitHook;
 
+use DevNanny\GitHook\Interfaces\CommitDiffInterface;
 use DevNanny\GitHook\Interfaces\RepositoryContainerInterface;
 
 /**
@@ -84,9 +85,9 @@ final class CommitDiffTest extends \PHPUnit_Framework_TestCase
         );
 
         $expected = array(
-            'src/Foo.php',
-            'src/Foo/Bar/Bar.txt',
-            'baz'
+            'src/Foo.php' => CommitDiffInterface::FILE_STATUS_ADDED,
+            'src/Foo/Bar/Bar.txt' => CommitDiffInterface::FILE_STATUS_COPIED,
+            'baz' => CommitDiffInterface::FILE_STATUS_UNKNOWN
         );
 
         $rawOutput = implode("\x00", $mockList) . "\x00";

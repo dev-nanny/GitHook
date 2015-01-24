@@ -43,12 +43,14 @@ class CommitDiff implements CommitDiffInterface
 
         $parts = explode("\x00", $rawOutput);
 
-        $currentValueIsFilePath = false;
+        $currentType = null;
         foreach ($parts as $pathOrType) {
-            if ($currentValueIsFilePath === true) {
-                $files[] = $pathOrType;
+            if ($currentType !== null) {
+                $files[$pathOrType] = $currentType;
+                $currentType = null;
+            } else {
+                $currentType = $pathOrType;
             }
-            $currentValueIsFilePath = !$currentValueIsFilePath;
         };
 
         return $files;
